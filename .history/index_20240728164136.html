@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <span id="viewClicks">Total Clicks: 0</span>
+    <button id="btn">click me!</button>
+    <script>
+      let counter = 0;
+      const button = document.querySelector('#btn');
+      const span = document.querySelector('#viewClicks');
+      function handleClick(){
+        // console.log('I have handle click');
+        counter++;
+        span.textContent = `Total Clicks: ${counter}`;
+      }
+
+      button.addEventListener('click', handleClick);
+    </script>
+  </body>
+</html>

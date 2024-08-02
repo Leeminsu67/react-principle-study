@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Btn({ text }) {
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize: 16,
+          }}
+        >
+          {text}
+        </button>
+      );
+    }
+    // App 컴포넌트
+    const App = () => {
+      // Btn({text:"Save Changes"});
+      return (
+        <div>
+          <Btn text="Save Changes" />
+          <Btn text="Continue" />
+        </div>
+      );
+    };
+
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

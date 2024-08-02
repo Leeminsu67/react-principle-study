@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const MinutesToHours = () => {
+      const [amount, setAmount] = React.useState(0);
+      const [inverted, setInverted] = React.useState(false);
+      const onChange = (event) => {
+        // console.log(event.target.value);
+        setAmount(event.target.value);
+      };
+      const reset = () => setAmount(0);
+      // filp function
+      // const onFlip = () => setInverted(!inverted);
+      const onInvert = () => {
+        reset();
+        setInverted((current) => !current);
+      };
+      return (
+        <div>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              value={inverted ? amount * 60 : amount}
+              id="minutes"
+              type="number"
+              placeholder="Minutes"
+              onChange={onChange}
+              disabled={inverted}
+            />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              value={inverted ? amount : Math.round(amount / 60)}
+              id="hours"
+              type="number"
+              placeholder="Hours"
+              // minutes와 반대가 되기 위해서 조건문을 부여
+              disabled={!inverted}
+              onChange={onChange}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={onInvert}>
+            {inverted ? "Turn back" : "Invert"}
+          </button>
+        </div>
+      );
+    };
+    const KmToMiles = () => {
+      return <h3>KM 2 M</h3>;
+    };
+    const App = () => {
+      const [index, setIndex] = React.useState("0");
+      const onSelect = (e) => {
+        console.log(e.target.value);
+      };
+      return (
+        <div>
+          <h1>Super Converter</h1>
+          <select onChange={onSelect}>
+            <option value="0">Minutes & Hours</option>
+            <option value="1">Km & Miles</option>
+          </select>
+          {index === "0" ? <MinutesToHours /> : null}
+        </div>
+      );
+    };
+
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
